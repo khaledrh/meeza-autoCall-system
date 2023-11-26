@@ -1,0 +1,16 @@
+{% extends "auto_call/layout.html" %}
+{% block title %}
+    تسجيل غرفه
+{% endblock %}
+{% block content %}
+    <div class="logo-form">
+      {% load static %}
+
+      <img src="{% static 'auto_call/logo-ar.png' %}">
+    </div>
+    <form method="POST" class="log-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

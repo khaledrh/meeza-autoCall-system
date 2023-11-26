@@ -1,0 +1,50 @@
+{% extends "auto_call/layout.html" %}
+{% block title %}
+    شاشه
+{% endblock %}
+{% block content %}
+
+<div class="grid-container">
+  <div class="logo">
+    {% load static %}
+
+    <img src="{% static 'auto_call/logo-ar.png' %}">
+  </div>
+  <div class="top L1">
+    <h2>top</h2>
+  </div>
+  
+  <div class="top L2">
+    <h2>top</h2>
+  </div>
+  
+  <div class="top M">
+    <h2>top</h2>
+  </div>
+  
+  <div class="top R2">
+    <h2>top</h2>
+  </div>
+  
+  <div class="top R1">
+    <h2>top</h2>
+  </div>
+
+  <div class="left L1" style="background-color:#aaa;"><h3>left</h3></div>
+  <div class="right R1" style="background-color:#aaa;"><h3>right</h3></div>
+  
+  <div class="middle" style="background-color:#bbb;">Column</div>  
+
+  <div class="left L2" style="background-color:#ccc;"><h3>left</h3></div>
+  <div class="right R2" style="background-color:#ccc;"><h3>right</h3></div>
+  
+  <!-- <div class="footer">
+    <p>Footer</p>
+  </div> -->
+</div>
+{% endblock %}
+
+
+
+
+

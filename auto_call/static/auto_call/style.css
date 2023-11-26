@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+.body-content {
+    text-align: right;
+    padding: 0px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    background-color: lightslategray;
+    font-size: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    padding: 8px 5px 8px 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.navbar-item {
+    font-variant: small-caps;
+    margin-left: 30px;
+}
+
+
+/* Style the header */
+.logo {
+  grid-area: logo;
+  padding: 10px;
+  text-align: center;
+}
+
+.logo img{
+  min-height: 200px;
+}
+
+.top {
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+  }
+
+.top .L1 {
+    grid-area: top1;
+    margin-left: 10%;
+}
+
+.top .L2 {
+    grid-area: top2;
+}
+
+.M {
+    grid-area: top3;
+}
+
+.top .R2 {
+    grid-area: top4;
+}
+
+.top .R1 {
+    grid-area: top5;
+    margin-right: 10%;
+}
+
+
+/* The grid container */
+.grid-container {
+  display: grid;
+  grid-template-areas: 
+    'logo logo logo logo logo ' 
+    'top1 top2 top3 top4 top5 ' 
+    'left middle middle middle  right'
+    'left middle middle middle  right' 
+    'footer footer footer footer footer';
+  grid-column-gap: 4%; 
+} 
+
+.left,
+.right,
+.top {
+  height: 120px;
+  width: 100%;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10%;
+
+}
+
+
+
+/* Style the left column */
+.left .L1{
+  grid-area: left1;
+  margin-left: 10%;
+}
+
+.left .L2{
+  grid-area: left2;
+  margin-left: 10%;
+}
+
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+  padding: 10px;
+  height: 253px;
+  width: 100%;
+  border-radius: 30px; 
+}
+
+/* Style the right column */
+.right .R1{
+  grid-area: right1;
+  margin-right: 10%;
+
+}
+
+.right .R2{
+  grid-area: right2;  
+  margin-right: 10%;
+
+}
+  
+/* Style the footer */
+.footer {
+  grid-area: footer;
+  background-color: #f1f1f1;
+  padding: 10px;
+  height: 50px;
+  text-align: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .grid-container  {
+    grid-template-areas: 
+      'logo logo logo' 
+      'top1 top2 top3'
+      'middle middle middle' 
+      'top4 top5 left1 ' 
+      'left2 right1 right2' 
+      'footer footer footer';
+  }
+}
+
+
+.message {
+    font-weight: 600;
+    color: blue;
+}
+
+.message_list th,td {
+    text-align: left;
+    padding-right: 15px;
+}
+
+input[name=message] {
+    width: 80%;
+}
+
