@@ -1,0 +1,220 @@
+@font-face {
+  font-family: 'GE_Dinar';
+  src: url('fonts/ArbFONTS-GE_Dinar_One_Medium') format("opentype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: white;
+}
+
+.navbar {
+  background-color: lightslategray;
+  font-size: 1em;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  padding: 8px 5px 8px 5px;
+}
+
+.navbar a {
+text-decoration: none;
+color: inherit;
+}
+
+.navbar-brand {
+font-size: 1.2em;
+font-weight: 600;
+}
+
+.navbar-item {
+  font-variant: small-caps;
+  margin-left: 30px;
+}
+
+.body-content {
+    text-align: left;
+}
+
+footer {
+  background-color: #2DA48E;
+  padding: 10px;
+  width: 100%;
+  min-height: 3rem;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+}
+
+
+/* Style the header */
+.logo {
+  padding: 10px;
+  text-align: center;
+}
+
+.logo img{
+  min-height: 300px;
+  height: 30%;
+}
+
+.container {
+  min-height: 660px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(12rem, auto);
+  margin: 0 70px;
+  column-gap: 2em;
+}
+
+.list {
+  background-color: blue;
+  /* height: 120px; */
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 10%;
+  display: grid;
+  place-content: start end;
+}
+
+.list h2{
+  text-align: right;
+}
+
+.screen
+{
+  background-color: black;
+  grid-column: 2 /5;
+  grid-row: 2 / 5;
+  padding: 1rem;
+  height: 26rem;
+  width: 100%;
+  border-radius: 50px; 
+}
+
+.logo-form {
+  text-align: center;
+}
+
+.logo-form img{
+  
+  padding: 5rem 10rem 2rem 10rem;
+  width: 100%;
+  min-height: 300px;
+}
+
+.patient-form {
+  /* display: flex;
+  justify-content: center ;
+  align-items: end;
+  flex-direction: column;  */
+  display: grid;
+  grid-template-areas: 
+    'room room room room room room' 
+    'name name name name name name' 
+    'del del emrg emrg save save';
+  column-gap: 2em;
+}
+
+.room-select{
+  text-align: center;
+  font-size: 5rem;
+  width: 100%;
+  height: 12vh;
+  min-height: 50px;
+  grid-area: room;
+}
+
+.room-select select{
+  width: 80%;
+  background-color: #2DA48E;
+  min-height: 100px;
+  border-radius: 50px 50px 0 0;
+  display: flex;
+}
+
+#room-holder select option{
+  display: flex;
+}
+
+option.room-select{
+  display: flex;
+
+}
+
+.name-input{
+  text-align: center;
+  font-size: 5rem;
+  width: 100%;
+  min-height: 140px;
+  grid-area: name;
+}
+
+.name-input input{
+  width: 80%;
+  min-height: 100px;
+  background-color: #0D3991;
+  border-radius: 0 0 50px 50px ;
+
+}
+
+.emrg-checkbox{
+  grid-area: emrg;
+  width: 60%;
+  height: 50px;
+  justify-self: center;
+  text-align: center;
+  border: 5px solid #0D3991;
+  border-radius: 50px;
+
+}
+
+.list iframe{
+  
+  border: none;
+
+}
+
+/* .emrg-checkbox input{
+} */
+
+.save-btn{
+  grid-area: save;
+  width: 60%;
+  
+  border: 1rem;
+  border-radius: 50px;
+} 
+
+.delete-btn{
+  grid-area: del;
+  width: 60%;
+  justify-self: end;
+  
+  border: 1rem;
+  border-radius: 50px;
+}
+
+.patient-list{
+  background: transparent;
+}
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (min-width: 650px) {
+
+}
+
+@media screen and(min-width: 992px) {
+
+}
+
+@media screen and(min-width: 1201px){
+  
+}
+
+
+

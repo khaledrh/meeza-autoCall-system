@@ -1,0 +1,62 @@
+{% extends "auto_call/layout.html" %}
+{% block title %}
+شاشه
+{% endblock %}
+{% block content %}
+<div class="logo">
+  {% load static %}
+
+  <img src="{% static 'auto_call/logo-ar.png' %}">
+</div>
+
+<div class="container">
+
+  <div class="list">
+    <h2>مقطعية</h2>
+    <iframe src="{%url 'roomlist' 1%}"></iframe>
+  </div>
+
+  <div class="list">
+    <h2>رنين مغناطيسي</h2>
+    <iframe src="{%url 'roomlist' 2%}"></iframe>
+  </div>
+
+  <div class="list">
+    <h2>موجات صوتيه</h2>
+    <iframe src="{%url 'roomlist' 3%}"></iframe>
+  </div>
+
+  <div class="list">
+    <h2>موجات صوتيه</h2>
+    <iframe src="{%url 'roomlist' 4%}"></iframe>
+  </div>
+
+  <div class="list">
+    <h2>وحدة القلب</h2>
+    <iframe src="{%url 'roomlist' 5%}"></iframe>
+  </div>
+
+  <div class="list">
+    <h2>رسم عصب</h2>
+    <iframe src="{%url 'roomlist' 6%}"></iframe>
+  </div>
+
+  <div class="list">
+    <h2>رسم مخ</h2>
+    <iframe src="{%url 'roomlist' 7%}"></iframe>
+  </div>
+
+  <div class="screen">Column</div>
+
+  <div class="list">
+    <h2>هشاشة عظام</h2>
+    <iframe src="{%url 'roomlist' 8%}"></iframe>
+  </div>
+
+  <div class="list">
+    <h2>وحدة الثدي</h2>
+    <iframe src="{%url 'roomlist' 9%}"></iframe>
+  </div>
+
+</div>
+{% endblock %}

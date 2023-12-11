@@ -1,0 +1,32 @@
+{% extends "auto_call/layout.html" %}
+{% block title %}
+    تسجيل مريض
+{% endblock %}
+{% block content %}
+    <div class="logo-form">
+      {% load static %}
+
+      <img src="{% static 'auto_call/logo-ar.png' %}">
+    </div>
+    <form method="POST" class="patient-form">
+        {% csrf_token %}
+        {{form.non_field_errors}}
+        <div class="room-select" id="room-holder">
+            {{form.room.errors}}
+            <label for="{{form.room.id_for_label}}"></label>
+            {{form.room}}  
+        </div>
+        <div class="name-input">
+            {{form.name.errors}}
+            <label for="{{form.name.id_for_label}}"></label>
+            {{form.name}}  
+        </div>
+        <div class="emrg-checkbox">
+            {{form.emergancy.errors}}
+            <label for="{{form.emergancy.id_for_label}}">طوارئ</label>
+            {{form.emergancy}}  
+        </div>
+        <button type="submit" class="save-btn">تسجيل</button>
+        <button class="delete-btn btn btn-default">خروج</button>
+    </form>
+{% endblock %}

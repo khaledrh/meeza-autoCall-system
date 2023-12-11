@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'auto_call/style.css' %}"/>
+</head>
+
+<body class="patient-list">
+
+    {% if patient_list %}
+        <table>
+            <tbody>
+            {% for patient in patient_list %}
+                <tr>
+                    <td>
+                        {{ patient.name }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No Patients Waiting.</p>
+    {% endif %}
+
+
+</body>
+</html>
