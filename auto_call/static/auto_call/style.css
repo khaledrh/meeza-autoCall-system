@@ -138,6 +138,11 @@ footer {
   display: flex;
 }
 
+option:nth-of-type(3n+1) {
+  clear: left;
+  background-color: black;
+}
+
 #room-holder select option{
   display: flex;
 }
