@@ -10,10 +10,15 @@
 
 <body>
 <div class="navbar">
-    <a href="{% url 'home' %}" class="navbar-brand">Home</a>
-    <a href="{% url 'form' %}" class="navbar-item">Patient Form</a>
-    <a href="{% url 'screen' %}" class="navbar-item">Screen</a>
+    {% load static %}
+    <img src="{% static 'auto_call/logo-ar.png' %}">
+    <div class="links">
+        <a href="{% url 'home' %}" class="navbar-brand"><span>الرئيسية</span></a>
+        <a href="{% url 'form' %}" class="navbar-item"><span>تسجيل المريض</span></a>
+        <a href="{% url 'screen' %}" class="navbar-item"><span>الشاشه</span></a>    
+    </div>
 </div>
+
 <div class="body-content">
     {% block content %}
     {% endblock %}
