@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'GE_Dinar', Arial, sans-serif;
 }
 
 body {
@@ -14,10 +15,11 @@ body {
   background-color: white;
 }
 
+/* styling for the navbar */
 .navbar {
   background-color: white;
   font-size: 1.5em;
-  font-family: 'GE_Dinar', Arial, sans-serif;
+  /* font-family: 'GE_Dinar', Arial, sans-serif; */
   color: rgba(23,24,56,1);
   margin: 0 20%;
   display: flex;
@@ -61,9 +63,11 @@ body {
   border-right: 0.5px solid lightgray;
   font-variant: small-caps;
 }
+/* end of navbar style */
+
 
 .body-content {
-    text-align: left;
+    text-align: right;
 }
 
 footer {
@@ -76,8 +80,82 @@ footer {
   bottom: 0;
 }
 
+/* styling content bar */
+.lists_container{
+  display: flex;
+  flex-direction: column;
+  margin: 20px 150px 0 150px;
+  /* font-family: 'GE_Dinar', Arial, sans-serif; */
+  font-size: 2rem;
+}
 
-/* Style the header */
+.lists_bar {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+.lists_bar a{
+  text-decoration: none;
+  line-height: 50px;
+  background-color: #2DA48E;
+  border: 5px solid #0D3991;
+  flex: 1 1 20%;
+}
+
+.lists_bar span{
+  margin: 1em;  
+}
+/* end of style content bar */
+
+/* styling content list */
+.list_content{
+  /* border: 1em solid #0D3991; */
+  border-bottom: none;
+  direction: rtl;
+  background-color: #efefef;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.full_list{
+  min-width: 100%;
+  text-emphasis: none;
+  font-size: 1.5em;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+thead{
+  text-align: right;
+}
+
+tbody{
+  text-align: justify;
+}
+
+.full_list thead tr, 
+.full_list thead th {
+  letter-spacing: .1rem;
+}
+
+.full_list tbody tr th, 
+.full_list tbody tr td {
+  background: #fff;
+  border: none;
+}
+
+.full_list tbody tr.spacer td {
+  height: 10px;
+  background: transparent !important;
+}
+  
+
+/* end of style content list */
+
+
+/* Style the Screen */
 .logo {
   padding: 10px;
   text-align: center;
@@ -98,8 +176,8 @@ footer {
 }
 
 .list {
-  background-color: blue;
-  /* height: 120px; */
+  background-color: #0D3991;
+  color: #2DA48E;
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 10%;
@@ -107,43 +185,63 @@ footer {
   place-content: start end;
 }
 
+.list:nth-of-type(2),
+.list:nth-of-type(4),
+.list:nth-of-type(6),
+.list:nth-of-type(7){
+  background-color: #2DA48E;
+  color: #0D3991;
+}
+
 .list h2{
-  text-align: right;
+  text-align: center;
 }
 
 .screen
 {
   background-color: black;
   grid-column: 2 /5;
-  grid-row: 2 / 5;
+  grid-row: 2 / 4;
   padding: 1rem;
   height: 26rem;
   width: 100%;
   border-radius: 50px; 
 }
 
+/* start styling form */
+.form-container{
+  background-color: grey;
+  max-width: 75%;
+  margin: auto;
+  border-radius: 150px;
+}
+
 .logo-form {
   text-align: center;
+  background-color: #fff;
+  max-width: 95%;
+  margin: auto;
+  border-radius: inherit;
 }
 
 .logo-form img{
-  
-  padding: 5rem 10rem 2rem 10rem;
+  padding: 5rem 5rem 2rem 5rem;
   width: 100%;
-  min-height: 300px;
+  min-height: 250px;
 }
 
 .patient-form {
-  /* display: flex;
-  justify-content: center ;
-  align-items: end;
-  flex-direction: column;  */
   display: grid;
   grid-template-areas: 
     'room room room room room room' 
     'name name name name name name' 
     'del del emrg emrg save save';
   column-gap: 2em;
+  padding: 0 0 3rem 0;
+}
+
+.patient-form span{
+  font-size: 2em;
 }
 
 .room-select{
@@ -160,21 +258,6 @@ footer {
   background-color: #2DA48E;
   min-height: 100px;
   border-radius: 50px 50px 0 0;
-  display: flex;
-}
-
-option:nth-of-type(3n+1) {
-  clear: left;
-  background-color: black;
-}
-
-#room-holder select option{
-  display: flex;
-}
-
-option.room-select{
-  display: flex;
-
 }
 
 .name-input{
@@ -201,7 +284,43 @@ option.room-select{
   text-align: center;
   border: 5px solid #0D3991;
   border-radius: 50px;
+}
 
+.emrg-checkbox label span{
+  margin-left: 1em;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  font: inherit;
+  color: currentColor;
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translate(5.5em ,-2.125em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em rebeccapurple;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
 }
 
 .list iframe{
@@ -209,9 +328,6 @@ option.room-select{
   border: none;
 
 }
-
-/* .emrg-checkbox input{
-} */
 
 .save-btn{
   grid-area: save;

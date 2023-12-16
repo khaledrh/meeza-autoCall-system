@@ -3,38 +3,59 @@
     Home
 {% endblock %}
 {% block content %}
-    <h2>Logged messages</h2>
+    <div class="lists_container">
+        <div class="lists_bar">
+            <a href="{% url 'home' 0%}" class="bar-brand"><span>الكل</span></a>
+            <a href="{% url 'home' 1%}" class="bar-item"><span>مقطعية</span></a>
+            <a href="{% url 'home' 2%}" class="bar-item"><span>رنين مغناطيسي</span></a>
+            <a href="{% url 'home' 3%}" class="bar-item"><span>موجات صوتيه</span></a>    
+            <a href="{% url 'home' 4%}" class="bar-item"><span>موجات صوتيه</span></a>
+            <a href="{% url 'home' 5%}" class="bar-item"><span>وحدة القلب</span></a>
+            <a href="{% url 'home' 6%}" class="bar-item"><span>رسم عصب</span></a>    
+            <a href="{% url 'home' 7%}" class="bar-item"><span>رسم مخ</span></a>
+            <a href="{% url 'home' 8%}" class="bar-item"><span>هشاشة عظام</span></a>
+            <a href="{% url 'home' 9%}" class="bar-item"><span>وحدة الثدي</span></a>    
+        </div>
+        <div class="list_content">
+            {% if message_list %}
+                <table class="full_list">
+                    <thead>
+                    <tr>
+                        <th>الغرفه</th>
+                        <th>اسم المريض</th>
+                        <th>حالة طوارئ</th>
+                        <th>تاريخ الحجز</th>
+                        <th>توقيت الحجز</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for message in message_list %}
+                        <tr>
+                            <td>
+                                {{ message.room }}
+                            </td>
+                            <td>
+                                {{ message.name }}
+                            </td>
+                            <td>
+                                {{message.emergancy}}
+                            </td>
+                            <td>{{ message.log_date | date:'d / M / Y' }}</td>
+                            <td>{{ message.log_date | time:'H:i:s' }}</td>
+                        </tr>
+                        <tr class="spacer">
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No messages have been logged. Use the <a href="{% url 'form' %}">Log Message form</a>.</p>
+            {% endif %}
+        </div>
 
-    {% if message_list %}
-        <table class="message_list">
-            <thead>
-            <tr>
-                <th>Room</th>
-                <th>Patient Name</th>
-                <th>Emerg</th>
-                <th>Date</th>
-                <th>Time</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for message in message_list %}
-                <tr>
-                    <td>
-                        {{ message.room }}
-                    </td>
-                    <td>
-                        {{ message.name }}
-                    </td>
-                    <td>
-                        {{message.emergancy}}
-                    </td>
-                    <td>{{ message.log_date | date:'d M Y' }}</td>
-                    <td>{{ message.log_date | time:'H:i:s' }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No messages have been logged. Use the <a href="{% url 'form' %}">Log Message form</a>.</p>
-    {% endif %}
+    </div>
+
+
+
 {% endblock %}

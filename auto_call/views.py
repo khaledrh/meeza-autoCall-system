@@ -11,9 +11,15 @@ from django.shortcuts import redirect
 
 class HomeListView(ListView):
     model = Patient
+    context_object_name="message_list"
+    template_name="auto_call/patient_list.html"
 
-    def get_context_data(self, **kwargs):
-        return super(HomeListView, self).get_context_data(**kwargs)
+    def get_queryset(self):
+        room = self.kwargs["roomid"]
+        if room == 0:
+            return Patient.objects.order_by("log_date")
+        else:
+            return Patient.objects.order_by("log_date").filter(room = self.kwargs["roomid"])
         
 
 class PatientListView(ListView):
