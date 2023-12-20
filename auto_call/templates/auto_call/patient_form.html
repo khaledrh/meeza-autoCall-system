@@ -8,17 +8,21 @@
             {% load static %}
 
             <img src="{% static 'auto_call/logo-ar.png' %}">
-            <form method="POST" class="patient-form">
+            <form method="POST" class="patient-form" autocomplete="off">
                 {% csrf_token %}
                 {{form.non_field_errors}}
                 <div class="room-select">
-                    {{form.room.errors}}
-                    <label for="{{form.room.id_for_label}}"></label>
-                    {{form.room}}  
+                    <button id="showItemsBtn">Show Items</button>
+                    {% for room in rooms %}
+                        <div id="itemList" class="hidden">
+                            <div class="item">
+                                {{room}}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="name-input">
                     {{form.name.errors}}
-                    <label for="{{form.name.id_for_label}}"></label>
                     {{form.name}}  
                 </div>
                 <div class="emrg-checkbox">
@@ -26,9 +30,19 @@
                     <label for="{{form.emergancy.id_for_label}}"><span>طوارئ</span></label>
                     {{form.emergancy}}  
                 </div>
-                <button type="submit" class="save-btn"><span>تسجيل</span></button>
-                <button class="delete-btn btn btn-default"><span>خروج</span></button>
+                <button type="submit" class="save-btn btn-default"><span>تسجيل</span></button>
+                <a href="{% url 'formdel' 1%}" class="delete-btn btn-default"><span>خروج</span></a>
             </form>
         </div>
     </div>
+
+  
+    <script>
+      document.getElementById('showItemsBtn').addEventListener('click', function() {
+        var itemList = document.getElementById('itemList');
+        itemList.classList.toggle('hidden');
+        itemList.classList.toggle('visible');
+      });
+    </script>
+
 {% endblock %}

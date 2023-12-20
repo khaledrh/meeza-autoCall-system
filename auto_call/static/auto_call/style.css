@@ -96,55 +96,90 @@ footer {
   flex-wrap: wrap-reverse;
 }
 
+.corner-right{
+  border-radius: 0 20px 0 0;
+}
+.corner-left{
+  border-radius: 20px 0 0 0;
+}
+
 .lists_bar a{
   text-decoration: none;
   line-height: 50px;
-  background-color: #2DA48E;
-  border: 5px solid #0D3991;
-  flex: 1 1 20%;
+  background-color: #2DA48Ec9;
+  width: 100%;
+  display: block;
+  border-radius: 10px;
 }
 
 .lists_bar span{
-  margin: 1em;  
+  margin-right: 1em;  
+  color: aliceblue;
+}
+
+.bar-item{
+  padding: 0.4em;
+  background-color: #0d3991c9;
+  flex: 1 1 20%;
 }
 /* end of style content bar */
 
+.hidden {
+  display: none;
+}
+.visible {
+  display: flex;
+}
+.item {
+  float: left;
+  width: 30%; /* Set the width to display 3 items in a row */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
 /* styling content list */
 .list_content{
-  /* border: 1em solid #0D3991; */
+
   border-bottom: none;
   direction: rtl;
-  background-color: #efefef;
-  padding: 20px;
-  border-radius: 4px;
+  background-color: #0d3991c9;
+  padding: 10px 20px 20px 20px;
 }
 
 .full_list{
   min-width: 100%;
   text-emphasis: none;
-  font-size: 1.5em;
+  font-size: 1em;
   margin-bottom: 1rem;
   color: #212529;
 }
 
 thead{
   text-align: right;
-}
-
-tbody{
-  text-align: justify;
+  color: #fff;
 }
 
 .full_list thead tr, 
 .full_list thead th {
   letter-spacing: .1rem;
+  text-align: center;
 }
 
 .full_list tbody tr th, 
 .full_list tbody tr td {
+  padding: 0;
   background: #fff;
-  border: none;
+  text-align: center;
 }
+
+.full_list tr td:last-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.full_list tr td:first-child { 
+  border-radius: 0 10px 10px 0; 
+}
+
 
 .full_list tbody tr.spacer td {
   height: 10px;
@@ -161,7 +196,7 @@ tbody{
   text-align: center;
 }
 
-.logo img{
+.logo img {
   min-height: 300px;
   height: 30%;
 }
@@ -170,49 +205,80 @@ tbody{
   min-height: 660px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: minmax(12rem, auto);
+  grid-auto-rows: minmax(10rem, 14.9rem);
   margin: 0 70px;
   column-gap: 2em;
 }
 
 .list {
-  background-color: #0D3991;
+  background-color: #0d3991c9;
   color: #2DA48E;
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 10%;
   display: grid;
   place-content: start end;
+  justify-content: center;
 }
 
 .list:nth-of-type(2),
 .list:nth-of-type(4),
 .list:nth-of-type(6),
-.list:nth-of-type(7){
-  background-color: #2DA48E;
+.list:nth-of-type(7) {
+  background-color: #2DA48Ec9;
   color: #0D3991;
 }
 
-.list h2{
+.list h2 {
   text-align: center;
 }
 
-.screen
-{
+.screen {
   background-color: black;
   grid-column: 2 /5;
   grid-row: 2 / 4;
   padding: 1rem;
-  height: 26rem;
+  height: 30rem;
   width: 100%;
   border-radius: 50px; 
+  transform: translateY(-1em);
 }
+
+.list iframe {
+  margin-top: 1px;
+  border: none;
+  width: 100%;
+}
+
+.patient-list{
+  background: transparent;
+}
+
+.patient-list table{
+  width: 100%;
+  text-align: right;
+  color: aliceblue;
+  letter-spacing: 0.2px;
+}
+
+.patient-list p{
+  color: aliceblue;
+}
+
+.patient-list td{
+  padding: 2.5px 15px 2.5px 2.5px;
+}
+
+.patient-list tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* end of screen style */
 
 /* start styling form */
 .form-container{
-  background-color: grey;
+  background-color: #2DA48E;
   max-width: 75%;
-  margin: auto;
+  margin: 1.5% auto 0 auto;
   border-radius: 150px;
 }
 
@@ -225,7 +291,7 @@ tbody{
 }
 
 .logo-form img{
-  padding: 5rem 5rem 2rem 5rem;
+  padding: 3rem 5rem 2rem 5rem;
   width: 100%;
   min-height: 250px;
 }
@@ -276,18 +342,52 @@ tbody{
 
 }
 
+input[type = "text"]{
+  cursor: default;
+  caret-color: transparent;
+  padding: 0 5rem;
+  text-align: right;
+  color: #fff;
+  font-size: 3rem;
+  border: none;
+}
+
+input[type = "text"]:hover{
+}
+
+.btn-default{
+  width: 60%;
+  border: 5px solid #2DA48E;
+  border-radius: 50px;
+  background-color: transparent;
+  color: #2DA48E;
+
+}
+
 .emrg-checkbox{
   grid-area: emrg;
   width: 60%;
-  height: 50px;
   justify-self: center;
   text-align: center;
   border: 5px solid #0D3991;
+  color: #0D3991;
   border-radius: 50px;
 }
 
+.save-btn{
+  grid-area: save;
+} 
+
+.delete-btn{
+  grid-area: del;
+  justify-self: end;
+  cursor: default;
+}
+
 .emrg-checkbox label span{
+  display: block;
   margin-left: 1em;
+  transform: translate(10px, 10px);
 }
 
 input[type="checkbox"] {
@@ -298,7 +398,7 @@ input[type="checkbox"] {
   height: 1.5em;
   border: 0.15em solid currentColor;
   border-radius: 0.15em;
-  transform: translate(5.5em ,-2.125em);
+  transform: translate(5.5em ,-1.4em);
   display: grid;
   place-content: center;
 }
@@ -323,32 +423,6 @@ input[type="checkbox"]:focus {
   outline-offset: max(2px, 0.15em);
 }
 
-.list iframe{
-  
-  border: none;
-
-}
-
-.save-btn{
-  grid-area: save;
-  width: 60%;
-  
-  border: 1rem;
-  border-radius: 50px;
-} 
-
-.delete-btn{
-  grid-area: del;
-  width: 60%;
-  justify-self: end;
-  
-  border: 1rem;
-  border-radius: 50px;
-}
-
-.patient-list{
-  background: transparent;
-}
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (min-width: 650px) {
 
