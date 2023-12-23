@@ -11,15 +11,18 @@
             <form method="POST" class="patient-form" autocomplete="off">
                 {% csrf_token %}
                 {{form.non_field_errors}}
+
                 <div class="room-select">
-                    <button id="showItemsBtn">Show Items</button>
-                    {% for room in rooms %}
-                        <div id="itemList" class="hidden">
-                            <div class="item">
-                                {{room}}
+                    <button id="showItemsBtn"><span id="room-span">الغرفه</span></button>
+                    <div class="room-options">
+                        {% for room in rooms %}
+                            <div id="itemList" class="hidden">
+                                <div class="room-item">
+                                    <input type="button" id="ItemBtn" name="room" value="{{room}}">
+                                </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="name-input">
                     {{form.name.errors}}
@@ -31,18 +34,38 @@
                     {{form.emergancy}}  
                 </div>
                 <button type="submit" class="save-btn btn-default"><span>تسجيل</span></button>
-                <a href="{% url 'formdel' 1%}" class="delete-btn btn-default"><span>خروج</span></a>
+                <button class="delete-btn btn-default"><span>خروج</span></a>
             </form>
         </div>
     </div>
 
   
     <script>
-      document.getElementById('showItemsBtn').addEventListener('click', function() {
-        var itemList = document.getElementById('itemList');
-        itemList.classList.toggle('hidden');
-        itemList.classList.toggle('visible');
-      });
+    document.getElementById('showItemsBtn').addEventListener('click', function() {
+    var itemLists = document.querySelectorAll('#itemList'); // Use querySelectorAll to get all elements with ID 'itemList'
+    itemLists.forEach(function(itemList) { // Loop through each element
+    //   itemList.classList.toggle('visible'); // Toggle the 'hidden' class for each element
+      itemList.classList.remove("hidden");
+      itemList.classList.add("visible");
+    });
+  });
+
+  var roomButtons = document.querySelectorAll('.room-item input[type="button"]');
+        roomButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var itemLists = document.querySelectorAll('#itemList'); // Select all room items
+                itemLists.forEach(function(itemList) {
+                    itemList.classList.remove('visible')
+                    itemList.classList.add('hidden'); // Toggle the 'hidden' class for all room items
+                });
+
+                // // Change the content of the span to the value of the clicked input
+                var inputValue = this.value; // Get the value of the clicked input
+                console.log(inputValue);
+                var span = document.getElementById("room-span"); // Get the span element
+                span.textContent = inputValue; // Set the span content to the input value
+            });
+        });
     </script>
 
 {% endblock %}

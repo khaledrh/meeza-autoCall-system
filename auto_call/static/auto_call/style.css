@@ -124,19 +124,6 @@ footer {
 }
 /* end of style content bar */
 
-.hidden {
-  display: none;
-}
-.visible {
-  display: flex;
-}
-.item {
-  float: left;
-  width: 30%; /* Set the width to display 3 items in a row */
-  padding: 10px;
-  box-sizing: border-box;
-}
-
 /* styling content list */
 .list_content{
 
@@ -308,9 +295,11 @@ thead{
 
 .patient-form span{
   font-size: 2em;
+  padding-top: 1em;
 }
 
 .room-select{
+  position: relative;
   text-align: center;
   font-size: 5rem;
   width: 100%;
@@ -319,11 +308,45 @@ thead{
   grid-area: room;
 }
 
-.room-select select{
+.room-select button{
   width: 80%;
   background-color: #2DA48E;
   min-height: 100px;
   border-radius: 50px 50px 0 0;
+  padding: 0 5rem;
+  text-align: right;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.room-options{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: absolute;
+  z-index: 1;
+  width: 81%;
+  transform: translate(142px, -100px);
+
+}
+
+.hidden {
+  display: none;
+  background-color: transparent;
+}
+.visible {
+  display: block;
+  height: 115px;
+  background-color: #2DA48E;
+
+}
+
+
+.room-item input{
+  width: 350px;
+  height: inherit;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
 }
 
 .name-input{
@@ -332,6 +355,7 @@ thead{
   width: 100%;
   min-height: 140px;
   grid-area: name;
+
 }
 
 .name-input input{
@@ -352,7 +376,9 @@ input[type = "text"]{
   border: none;
 }
 
-input[type = "text"]:hover{
+input[type = "text"]::placeholder{
+  color: aliceblue;
+  
 }
 
 .btn-default{

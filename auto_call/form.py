@@ -11,7 +11,8 @@ class  PatientForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # self.fields['room'].empty_label = 'الغرفه'
-        
+        self.fields['name'].widget.attrs['placeholder'] = 'اسم المريض'
+
 
 class  RoomForm(forms.ModelForm):
     class Meta:

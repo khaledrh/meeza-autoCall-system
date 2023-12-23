@@ -41,9 +41,9 @@ def patient_form(request):
         if form.is_valid():
             message = form.save(commit=False)
             # message.room = 
-            room_id = request.POST.get('room_id')
-            # room = Room.objects.get(pk=room_id)
-            # message.room = room
+            room = request.POST.get('room')
+            room = Room.objects.get(pk=room)
+            message.room = room
             message.log_date = datetime.now()
             message.save()
             return redirect("form")
