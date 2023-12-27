@@ -1,6 +1,4 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views.generic import ListView
 from auto_call.models import Patient, Room
 from auto_call.form import PatientForm
@@ -38,12 +36,9 @@ def patient_form(request):
     rooms = Room.objects.all()
 
     if request.method == "POST":
+
         if form.is_valid():
             message = form.save(commit=False)
-            # message.room = 
-            room = request.POST.get('room')
-            room = Room.objects.get(pk=room)
-            message.room = room
             message.log_date = datetime.now()
             message.save()
             return redirect("form")
@@ -52,15 +47,13 @@ def patient_form(request):
     
 
 def patient_form_del(request, roomid):
-    if request.method == "POST":
-        # Retrieve the patient based on roomid
-        patient = get_object_or_404(Patient, room=roomid)
+    
+    if request.method == "POST":        
+        patient = Patient.objects.filter(room=roomid).order_by("-emergancy", "log_date").first()
         
-        # Delete the patient
-        patient.delete()
-        
-        # Redirect to a suitable URL after deletion (You can change this as per your requirement)
+        if patient:
+            patient.delete()
+            
         return redirect("home")
     else:
-        # Handle the case where the user accesses the URL without a POST request
         return "Bad Request"

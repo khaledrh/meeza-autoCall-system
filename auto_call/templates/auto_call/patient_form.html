@@ -13,7 +13,7 @@
                 {{form.non_field_errors}}
 
                 <div class="room-select">
-                    <button id="showItemsBtn"><span id="room-span">الغرفه</span></button>
+                    <button id="showItemsBtn"><span class = "text-span" id="room-span">الغرفه</span></button>
                     <div class="room-options">
                         {% for room in rooms %}
                             <div id="itemList" class="hidden">
@@ -22,6 +22,9 @@
                                 </div>
                             </div>
                         {% endfor %}
+                    </div>
+                    <div class="hidden">                    
+                        {{form.room}}
                     </div>
                 </div>
                 <div class="name-input">
@@ -33,7 +36,7 @@
                     <label for="{{form.emergancy.id_for_label}}"><span>طوارئ</span></label>
                     {{form.emergancy}}  
                 </div>
-                <button type="submit" class="save-btn btn-default"><span>تسجيل</span></button>
+                <button type="submit" class="save-btn btn-default" ><span>تسجيل</span></button>
                 <button class="delete-btn btn-default"><span>خروج</span></a>
             </form>
         </div>
@@ -41,31 +44,86 @@
 
   
     <script>
-    document.getElementById('showItemsBtn').addEventListener('click', function() {
-    var itemLists = document.querySelectorAll('#itemList'); // Use querySelectorAll to get all elements with ID 'itemList'
-    itemLists.forEach(function(itemList) { // Loop through each element
-    //   itemList.classList.toggle('visible'); // Toggle the 'hidden' class for each element
-      itemList.classList.remove("hidden");
-      itemList.classList.add("visible");
-    });
-  });
-
-  var roomButtons = document.querySelectorAll('.room-item input[type="button"]');
-        roomButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                var itemLists = document.querySelectorAll('#itemList'); // Select all room items
-                itemLists.forEach(function(itemList) {
-                    itemList.classList.remove('visible')
-                    itemList.classList.add('hidden'); // Toggle the 'hidden' class for all room items
-                });
-
-                // // Change the content of the span to the value of the clicked input
-                var inputValue = this.value; // Get the value of the clicked input
-                console.log(inputValue);
-                var span = document.getElementById("room-span"); // Get the span element
-                span.textContent = inputValue; // Set the span content to the input value
+        // Function to show items when 'showItemsBtn' is clicked
+        function showItems() {
+            var itemLists = document.querySelectorAll('#itemList');
+            itemLists.forEach(function(itemList) {
+                itemList.classList.remove("hidden");
+                itemList.classList.add("visible");
             });
+        }
+
+        // Function to handle room button click
+        function handleRoomButtonClick() {
+            var itemLists = document.querySelectorAll('#itemList');
+            itemLists.forEach(function(itemList) {
+                itemList.classList.remove('visible');
+                itemList.classList.add('hidden');
+            });
+
+            var inputValue = this.value;
+            console.log(inputValue);
+
+            var span = document.getElementById("room-span");
+            span.textContent = inputValue;
+            
+
+            var selectRoom = document.getElementById('id_room');
+            for (var i = 0; i < selectRoom.options.length; i++) {
+                if (selectRoom.options[i].textContent === inputValue) {
+                    selectRoom.options[i].selected = true;
+                    break;
+                }
+            }
+        }
+
+        // Function to handle delete button click
+        function handleDeleteButtonClick(event) {
+            event.preventDefault();
+
+            var selectRoom = document.getElementById('id_room');
+            for (var i = 0; i < selectRoom.options.length; i++) {
+                if (selectRoom.options[i].selected === true) {
+                    var inputValue= selectRoom.options[i].value.trim();
+                    break;
+                }
+            }
+
+            console.log(inputValue);
+            var confirmation = confirm("Are you sure you want to delete this patient?");
+            if (confirmation) {
+                fetch(`/delete/${inputValue}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ roomid: inputValue })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/form/';
+                    } else {
+                        console.error('Error deleting patient');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+            }
+        }
+
+        // Event listeners
+        document.getElementById('showItemsBtn').addEventListener('click', showItems);
+
+        var roomButtons = document.querySelectorAll('.room-item input[type="button"]');
+        roomButtons.forEach(function(button) {
+            button.addEventListener('click', handleRoomButtonClick);
         });
+
+        document.querySelector('.delete-btn').addEventListener('click', handleDeleteButtonClick);
     </script>
 
 {% endblock %}
+

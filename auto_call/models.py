@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Room(models.Model):
     name = models.CharField(max_length=40)
 
@@ -10,7 +9,7 @@ class Room(models.Model):
 class Patient(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
-    emergancy = models.BooleanField(default=1)
+    emergancy = models.BooleanField(default= False)
     log_date = models.DateTimeField("date logged")
 
 

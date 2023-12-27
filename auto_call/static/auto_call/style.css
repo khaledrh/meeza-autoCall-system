@@ -106,7 +106,7 @@ footer {
 .lists_bar a{
   text-decoration: none;
   line-height: 50px;
-  background-color: #2DA48Ec9;
+  background-color: #2da48ec9;
   width: 100%;
   display: block;
   border-radius: 10px;
@@ -122,11 +122,15 @@ footer {
   background-color: #0d3991c9;
   flex: 1 1 20%;
 }
+
+.bar-item a:hover{
+  background-color: rgba(45, 164, 142, 0.1) ;
+  color: black;
+}
 /* end of style content bar */
 
 /* styling content list */
 .list_content{
-
   border-bottom: none;
   direction: rtl;
   background-color: #0d3991c9;
@@ -295,7 +299,6 @@ thead{
 
 .patient-form span{
   font-size: 2em;
-  padding-top: 1em;
 }
 
 .room-select{
@@ -306,6 +309,11 @@ thead{
   height: 12vh;
   min-height: 50px;
   grid-area: room;
+}
+
+.room-select .text-span{
+  display: block;
+  margin-top: 10px;
 }
 
 .room-select button{
@@ -325,9 +333,9 @@ thead{
   position: absolute;
   z-index: 1;
   width: 81%;
-  transform: translate(142px, -100px);
-
+  transform: translate(142px, -110px);
 }
+
 
 .hidden {
   display: none;
@@ -335,18 +343,44 @@ thead{
 }
 .visible {
   display: block;
-  height: 115px;
+  height: 116px;
   background-color: #2DA48E;
-
 }
 
+.visible:first-child {
+  border-radius: 50px 0 0 0;
+}
+
+.visible:nth-child(3){
+  border-radius: 0 50px 0 0;
+}
+
+.visible:last-child {
+  border-radius: 0 0 50px 0;
+}
+
+.visible:nth-child(7){
+  border-radius: 0 0 0 50px;
+}
+
+.room-item{
+  width: 100%;
+  height: 100%;
+}
 
 .room-item input{
-  width: 350px;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   background-color: transparent;
   border: none;
-  font-size: 2rem;
+  font-size: 3rem;
+  color: aliceblue;
+}
+
+.room-item input:hover {
+  transform: translateY(-0.125em);
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .name-input{
