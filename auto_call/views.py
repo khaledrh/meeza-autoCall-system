@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render
 from django.views.generic import ListView
 from auto_call.models import Patient, Room
@@ -27,10 +28,6 @@ class PatientListView(ListView):
     def get_queryset(self):
         return Patient.objects.order_by("-emergancy","log_date").filter(room = self.kwargs["roomid"])[:5]
 
-
-def screen(request):
-    return render(request, "auto_call/screen.html")
-
 def patient_form(request):
     form = PatientForm(request.POST or None)
     rooms = Room.objects.all()
@@ -57,3 +54,9 @@ def patient_form_del(request, roomid):
         return redirect("home")
     else:
         return "Bad Request"
+    
+def slideshow(request):
+    folder_path = "auto_call/static/auto_call/slideshow/"
+    sub_folder_path = "auto_call/slideshow/"  # Replace with the path to your folder
+    files = [os.path.join(sub_folder_path, f) for f in os.listdir(folder_path)]
+    return render(request, 'auto_call/screen.html', {'files': files})

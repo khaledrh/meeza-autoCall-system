@@ -31,7 +31,7 @@
         "model": "auto_call.Room",
         "pk": 5,
         "fields": {
-            "name": "ECG "
+            "name": "ECHO "
         }
     },
     {
@@ -52,14 +52,14 @@
         "model": "auto_call.Room",
         "pk": 8,
         "fields": {
-            "name": "DEXA "
+            "name": "DENTAL "
         }
     },
     {
         "model": "auto_call.Room",
         "pk": 9,
         "fields": {
-            "name": "MAMO "
+            "name": "LAB "
         }
     }
 

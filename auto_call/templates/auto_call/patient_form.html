@@ -123,6 +123,28 @@
         });
 
         document.querySelector('.delete-btn').addEventListener('click', handleDeleteButtonClick);
+
+        function resetForm() {
+        document.querySelector('.patient-form').reset();
+        var span = document.getElementById("room-span");
+            span.textContent = "الغرفه";
+        }
+
+        // Function to handle keyup events
+        function handleKeyUp(event) {
+            if (event.key === "Escape") {
+                resetForm(); // Reset the form on 'Escape' key press
+
+                var itemLists = document.querySelectorAll('.visible');
+                itemLists.forEach(function(itemList) {
+                    itemList.classList.remove('visible');
+                    itemList.classList.add('hidden');
+                });
+            }
+        }
+
+        // Event listener for keyup events on the document
+        document.addEventListener('keyup', handleKeyUp);
     </script>
 
 {% endblock %}

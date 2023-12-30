@@ -8,5 +8,7 @@ urlpatterns = [
     path("room/<int:roomid>/", views.PatientListView.as_view(), name="roomlist"),
     path("form/", views.patient_form, name="form"),
     path("delete/<int:roomid>/", views.patient_form_del, name="formdel"),
-    path("screen/", views.screen, name="screen"),
+    path("screen/", views.slideshow, name="screen"),
+    path('slideshow/', views.slideshow, name='slideshow'),
+
     ]

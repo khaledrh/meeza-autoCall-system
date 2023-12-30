@@ -12,11 +12,16 @@
   <div class="logo">
     {% load static %}
 
-    <img src="{% static 'auto_call/logo-ar.png' %}">
+    <a href="{%url 'home' 0%}"><img src="{% static 'auto_call/logo-ar.png' %}"></a>
+  </div>
+  <div class="hidden">
+    <audio id="audioPlayer" loop>
+      <source src="{% static 'auto_call/waiting-music.mp3' %}" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio> 
   </div>
 
   <div class="container">
-
     <div class="list">
       <h2>مقطعية</h2>
       <iframe src="{%url 'roomlist' 1%}"></iframe>
@@ -33,7 +38,7 @@
     </div>
 
     <div class="list">
-      <h2>موجات صوتيه</h2>
+      <h2>اشعة</h2>
       <iframe src="{%url 'roomlist' 4%}"></iframe>
     </div>
 
@@ -52,18 +57,80 @@
       <iframe src="{%url 'roomlist' 7%}"></iframe>
     </div>
 
-    <div class="screen">Column</div>
+    <div class="slideshow-container" id="slideshow-container">
+      {% for file in files %}
+        <div class="mySlides">
+          {% if file|lower|slice:'-3:' == 'jpg' or file|lower|slice:'-4:' == 'jpeg' or file|lower|slice:'-3:' == 'png' or file|lower|slice:'-3:' == 'gif' %}
+            
+            <img src="{% static file %}" >
+          {% elif file|lower|slice:'-3:' == 'mp4' %}
+            <video autoplay muted>
+              <source src="{% static file %}" type="video/mp4"  >
+            </video>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
 
     <div class="list">
-      <h2>هشاشة عظام</h2>
+      <h2>اشعة الاسنان</h2>
       <iframe src="{%url 'roomlist' 8%}"></iframe>
     </div>
 
     <div class="list">
-      <h2>وحدة الثدي</h2>
+      <h2>المعمل</h2>
       <iframe src="{%url 'roomlist' 9%}"></iframe>
     </div>
 
   </div>
+
+<script>
+  const slideshowContainer = document.getElementById("slideshow-container");
+  const slides = document.getElementsByClassName("mySlides");
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[index].style.display = "block";
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function startSlideshow() {
+    showSlide(currentSlide);
+    setInterval(nextSlide, 20000); // 20 seconds interval
+  }
+
+  startSlideshow();
+
+  function toggleAudio() {
+  if (audioPlayer.paused) {
+    audioPlayer.play()
+      .then(() => {
+        // Audio started playing
+      })
+      .catch(error => {
+        // Autoplay was prevented
+        console.error('Autoplay was prevented:', error);
+      });
+  } else {
+    audioPlayer.pause();
+  }
+}
+
+// Event listener for 'keyup' event on the document
+document.addEventListener('keyup', event => {
+  if (event.key === 'm' || event.key === 'M') {
+    toggleAudio();
+  }
+});
+</script>
+
 </body>
 </html>
