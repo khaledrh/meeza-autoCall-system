@@ -9,7 +9,7 @@
             <div class="bar-item"><a href="{% url 'home' 1 %}"><span>مقطعية</span></a></div>
             <div class="bar-item"><a href="{% url 'home' 2 %}"><span>رنين مغناطيسي</span></a></div>
             <div class="bar-item"><a href="{% url 'home' 3 %}"><span>موجات صوتيه</span></a></div>
-            <div class="bar-item"><a href="{% url 'home' 4 %}"><span>اشعة</span></a></div>
+            <div class="bar-item"><a href="{% url 'home' 4 %}"><span>اشعة عاديه</span></a></div>
             <div class="bar-item corner-right"><a href="{% url 'home' 5 %}"><span>وحدة القلب</span></a></div>
             <div class="bar-item"><a href="{% url 'home' 6 %}"><span>رسم عصب</span></a></div>
             <div class="bar-item"><a href="{% url 'home' 7 %}"><span>رسم مخ</span></a></div>
@@ -21,7 +21,7 @@
                 <table class="full_list">
                     <thead>
                     <tr>
-                        <th>الغرفه</th>
+                        <th >م</th>
                         <th>اسم المريض</th>
                         <th>حالة طوارئ</th>
                         <th>تاريخ الحجز</th>
@@ -35,7 +35,7 @@
                     {% for message in message_list %}
                         <tr>
                             <td>
-                                {{ message.room }}
+                                <span id="counter">0</span>
                             </td>
                             <td>
                                 {{ message.name }}
@@ -78,6 +78,18 @@
 
     </div>
 
+    <script>
+        let count = 0;
+        const counter = document.querySelectorAll('#counter');
 
+        function incrementCounter() {
+            counter.forEach(counter => {
+                count++;
+                counter.textContent = count;
+            });
+        }
+
+        incrementCounter();
+    </script>
 
 {% endblock %}

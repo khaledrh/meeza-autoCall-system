@@ -24,37 +24,37 @@
   <div class="container">
     <div class="list">
       <h2>مقطعية</h2>
-      <iframe src="{%url 'roomlist' 1%}"></iframe>
+      <iframe  id = "patientFrame" src="{%url 'roomlist' 1%}"></iframe>
     </div>
 
     <div class="list">
       <h2>رنين مغناطيسي</h2>
-      <iframe src="{%url 'roomlist' 2%}"></iframe>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 2%}"></iframe>
     </div>
 
     <div class="list">
       <h2>موجات صوتيه</h2>
-      <iframe src="{%url 'roomlist' 3%}"></iframe>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 3%}"></iframe>
     </div>
 
     <div class="list">
-      <h2>اشعة</h2>
-      <iframe src="{%url 'roomlist' 4%}"></iframe>
+      <h2>اشعة عاديه</h2>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 4%}"></iframe>
     </div>
 
     <div class="list">
       <h2>وحدة القلب</h2>
-      <iframe src="{%url 'roomlist' 5%}"></iframe>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 5%}"></iframe>
     </div>
 
     <div class="list">
       <h2>رسم عصب</h2>
-      <iframe src="{%url 'roomlist' 6%}"></iframe>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 6%}"></iframe>
     </div>
 
     <div class="list">
       <h2>رسم مخ</h2>
-      <iframe src="{%url 'roomlist' 7%}"></iframe>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 7%}"></iframe>
     </div>
 
     <div class="slideshow-container" id="slideshow-container">
@@ -74,40 +74,48 @@
 
     <div class="list">
       <h2>اشعة الاسنان</h2>
-      <iframe src="{%url 'roomlist' 8%}"></iframe>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 8%}"></iframe>
     </div>
 
     <div class="list">
       <h2>المعمل</h2>
-      <iframe src="{%url 'roomlist' 9%}"></iframe>
+      <iframe id = "patientFrame" src="{%url 'roomlist' 9%}"></iframe>
     </div>
 
   </div>
 
 <script>
-  const slideshowContainer = document.getElementById("slideshow-container");
-  const slides = document.getElementsByClassName("mySlides");
-  let currentSlide = 0;
+        const slideshowContainer = document.getElementById("slideshow-container");
+        const slides = document.getElementsByClassName("mySlides");
+        let currentSlide = 0;
 
-  function showSlide(index) {
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    slides[index].style.display = "block";
-    currentSlide = index;
-  }
+        function showSlide(index) {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[index].style.display = "block";
+            currentSlide = index;
+        }
 
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
 
-  function startSlideshow() {
-    showSlide(currentSlide);
-    setInterval(nextSlide, 20000); // 20 seconds interval
-  }
+            const currentElement = slides[currentSlide].querySelector('img, video');
+            if (currentElement.tagName === 'VIDEO') {
+                currentElement.onended = function() {
+                    // Proceed to the next slide when the video ends
+                    nextSlide();
+                };
+            }
+        }
 
-  startSlideshow();
+        function startSlideshow() {
+            showSlide(currentSlide);
+            setInterval(nextSlide, 20000); // 20 seconds interval
+        }
+
+        startSlideshow();
 
   function toggleAudio() {
   if (audioPlayer.paused) {
@@ -124,12 +132,21 @@
   }
 }
 
-// Event listener for 'keyup' event on the document
 document.addEventListener('keyup', event => {
   if (event.key === 'm' || event.key === 'M') {
     toggleAudio();
   }
 });
+
+function refreshAllIframes() {
+    const iframes = document.querySelectorAll('iframe#patientFrame');
+    iframes.forEach(iframe => {
+      iframe.contentWindow.location.reload(true); // Reload each iframe content
+    });
+  }
+
+  setInterval(refreshAllIframes, 30000);
+
 </script>
 
 </body>
