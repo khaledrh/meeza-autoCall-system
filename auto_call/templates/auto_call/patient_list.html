@@ -53,7 +53,26 @@
                     </tbody>
                 </table>
             {% else %}
-                <p>No Patients Waiting.</p>
+            <table class="full_list">
+                <thead>
+                <tr>
+                    <th>الغرفه</th>
+                    <th>اسم المريض</th>
+                    <th>حالة طوارئ</th>
+                    <th>تاريخ الحجز</th>
+                    <th>توقيت الحجز</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="spacer">
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="no-patient">لا يوجد مريض</td>
+                        <td colspan="2">.</td>
+                    </tr>
+                </tbody>
+            </table>
             {% endif %}
         </div>
 
