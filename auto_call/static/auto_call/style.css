@@ -114,7 +114,7 @@ footer {
 
 .lists_bar span{
   margin-right: 1em;  
-  color: aliceblue;
+  
 }
 
 .bar-item{
@@ -123,10 +123,13 @@ footer {
   flex: 1 1 20%;
 }
 
-.bar-item a:hover,
-.bar-item a:active{
+.bar-item a{
+  color: aliceblue;
+}
+
+.bar-item a:hover{
   background-color: rgba(45, 164, 142, 0.1) ;
-  color: black;
+  color: rgb(0, 0, 59);
 }
 /* end of style content bar */
 
